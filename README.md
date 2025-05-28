@@ -1,3 +1,8 @@
+# Système de Gestion des Stages
+
+## Diagramme de Classes
+
+```mermaid
 classDiagram
     class Utilisateur {
         -id: int
@@ -9,7 +14,7 @@ classDiagram
         +seConnecter()
         +seDeconnecter()
     }
-
+    
     class Administrateur {
         -permissions: string[]
         +gererStagiaires()
@@ -17,7 +22,7 @@ classDiagram
         +consulterStatistiques()
         +gererEvaluations()
     }
-
+    
     class Tuteur {
         -service: string
         -departement: string
@@ -25,7 +30,7 @@ classDiagram
         +consulterStagiairesAttribues()
         +ajouterCommentaire()
     }
-
+    
     class Stagiaire {
         -id: int
         -nom: string
@@ -40,7 +45,7 @@ classDiagram
         +consulterProfil()
         +mettreAJourProfil()
     }
-
+    
     class Stage {
         -id: int
         -dateDebut: Date
@@ -56,7 +61,7 @@ classDiagram
         +terminerStage()
         +prolongerStage()
     }
-
+    
     class Evaluation {
         -id: int
         -note: float
@@ -67,7 +72,7 @@ classDiagram
         +modifierEvaluation()
         +consulterEvaluation()
     }
-
+    
     class Document {
         -id: int
         -nom: string
@@ -78,7 +83,7 @@ classDiagram
         +telecharger()
         +previsualiser()
     }
-
+    
     class Statistiques {
         +calculerNombreTotalStagiaires() int
         +calculerStagiairesActifs() int
@@ -89,16 +94,15 @@ classDiagram
         +calculerNoteMoyenne() float
         +calculerDureeMoyenne() float
     }
-
+    
+    %% Relations
     Utilisateur <|-- Administrateur
     Utilisateur <|-- Tuteur
-    
     Stagiaire ||--o{ Stage : effectue
     Stage ||--o{ Evaluation : "est évalué par"
     Tuteur ||--o{ Evaluation : effectue
     Tuteur ||--o{ Stagiaire : supervise
     Stage ||--o{ Document : contient
-    
     Administrateur ..> Statistiques : consulte
     Administrateur ..> Stagiaire : gère
     Administrateur ..> Tuteur : gère
