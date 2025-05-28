@@ -95,18 +95,13 @@ classDiagram
         +calculerDureeMoyenne() float
     }
     
-    %% Relations d'héritage
     Utilisateur <|-- Administrateur
     Utilisateur <|-- Tuteur
-    
-    %% Relations d'association
-    Stagiaire ||--o{ Stage
-    Stage ||--o{ Evaluation
-    Tuteur ||--o{ Evaluation
-    Tuteur ||--o{ Stagiaire
-    Stage ||--o{ Document
-    
-    %% Relations de dépendance
-    Administrateur ..> Statistiques
-    Administrateur ..> Stagiaire
-    Administrateur ..> Tuteur
+    Stagiaire --> Stage
+    Stage --> Evaluation
+    Tuteur --> Evaluation
+    Tuteur --> Stagiaire
+    Stage --> Document
+    Administrateur --> Statistiques
+    Administrateur --> Stagiaire
+    Administrateur --> Tuteur
